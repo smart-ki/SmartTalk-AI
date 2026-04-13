@@ -5,16 +5,15 @@ import { getKursBySlug, kurse } from '@/data/kurse'
 import BuchungsFormular from '@/components/BuchungsFormular'
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return kurse.map((k) => ({ slug: k.slug }))
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const kurs = getKursBySlug(slug)
+export function generateMetadata({ params }: Props): Metadata {
+  const kurs = getKursBySlug(params.slug)
   if (!kurs) return {}
   return {
     title: kurs.seoTitel,
@@ -23,9 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function KursDetailPage({ params }: Props) {
-  const { slug } = await params
-  const kurs = getKursBySlug(slug)
+export default function KursDetailPage({ params }: Props) {
+  const kurs = getKursBySlug(params.slug)
   if (!kurs) notFound()
 
   const andere = kurse.filter((k) => k.slug !== kurs.slug).slice(0, 3)
@@ -79,13 +77,11 @@ export default async function KursDetailPage({ params }: Props) {
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Left: details */}
           <div className="lg:col-span-3 space-y-10">
-            {/* Description */}
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-4">Über diesen Kurs</h2>
               <p className="text-gray-600 leading-relaxed">{kurs.ausfuehrlicheBeschreibung}</p>
             </div>
 
-            {/* Lernziele */}
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-4">Das lernst du</h2>
               <ul className="space-y-3">
@@ -102,7 +98,6 @@ export default async function KursDetailPage({ params }: Props) {
               </ul>
             </div>
 
-            {/* Details Tabelle */}
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-4">Kursdetails</h2>
               <div className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
