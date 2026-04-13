@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import KursCard from '@/components/KursCard'
+import KontaktFormular from '@/components/KontaktFormular'
 import { kurse } from '@/data/kurse'
 
 export default function HomePage() {
@@ -24,9 +25,9 @@ export default function HomePage() {
             <Link href="#angebote" className="btn-primary text-base px-8 py-4">
               Alle Kurse entdecken
             </Link>
-            <a href="mailto:jeannine.germann@smarttalk.ch" className="btn-outline text-base px-8 py-4">
+            <Link href="#kontakt" className="btn-outline text-base px-8 py-4">
               Beratungsgespräch anfragen
-            </a>
+            </Link>
           </div>
           <p className="mt-6 text-sm text-gray-400">
             Kein Vorwissen nötig · Präsenz und Online · Firmenkurse buchbar
@@ -65,7 +66,6 @@ export default function HomePage() {
               Von den Grundlagen bis zur strategischen KI-Einführung – der passende Kurs für jede Stufe.
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {kurse.map((kurs) => (
               <KursCard key={kurs.slug} kurs={kurs} />
@@ -111,12 +111,9 @@ export default function HomePage() {
               <img src="/logo.png" alt="SmartTalk AI" style={{ width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto 24px' }} />
               <p className="text-lg font-bold text-gray-900 mb-1">SmartTalk AI</p>
               <p className="text-sm text-gray-500 mb-4">Ein Angebot von SmartTalk · Zentralschweiz</p>
-              <a
-                href="mailto:jeannine.germann@smarttalk.ch"
-                className="btn-primary text-sm py-2.5 px-6"
-              >
+              <Link href="#kontakt" className="btn-primary text-sm py-2.5 px-6">
                 Kontakt aufnehmen
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -132,12 +129,27 @@ export default function HomePage() {
             Wir kommen zu euch – massgeschneidert, praxisnah und direkt auf eure Prozesse abgestimmt.
             Gruppen ab 6 Personen.
           </p>
-          <a
-            href="mailto:jeannine.germann@smarttalk.ch?subject=Anfrage Firmenkurs SmartTalk AI"
+          <Link
+            href="#kontakt"
             className="bg-white text-[#F5821F] font-bold px-8 py-4 rounded-lg hover:bg-orange-50 transition-colors inline-block text-base"
           >
             Firmenkurs anfragen
-          </a>
+          </Link>
+        </div>
+      </section>
+
+      {/* Kontakt */}
+      <section id="kontakt" className="py-20 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-gray-900 mb-3">Kontakt</h2>
+            <p className="text-gray-600">
+              Fragen zu einem Kurs, Firmenkurs-Anfrage oder einfach Hallo sagen – wir freuen uns.
+            </p>
+          </div>
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+            <KontaktFormular />
+          </div>
         </div>
       </section>
     </>
