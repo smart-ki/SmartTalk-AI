@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: 'SmartTalk AI <buchung@smarttalk-ai.ch>',
+      from: 'SmartTalk AI <onboarding@resend.dev>',
       to: BOOKING_EMAIL,
       replyTo: email,
       subject: `Buchungsanfrage: ${kursTitel} – ${name}`,
