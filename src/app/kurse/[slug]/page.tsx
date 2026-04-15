@@ -48,7 +48,7 @@ export default function KursDetailPage({ params }: Props) {
             <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${kurs.levelFarbe}`}>
               {kurs.level}
             </span>
-            <span className="text-sm text-gray-400">Kurs {kurs.nummer} von 6</span>
+            <span className="text-sm text-gray-400">Kurs {kurs.nummer} von 7</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-3">
             {kurs.titel}
@@ -97,6 +97,39 @@ export default function KursDetailPage({ params }: Props) {
                 ))}
               </ul>
             </div>
+
+            {/* Sessions / Kursplan */}
+            {kurs.sessions && kurs.sessions.length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-4">Kursplan</h2>
+                <p className="text-sm text-gray-500 mb-5">
+                  {kurs.anzahlSessions}x {kurs.minutenProSession} Minuten · 1 Lektion pro Woche
+                </p>
+                <div className="space-y-3">
+                  {kurs.sessions.map((session) => (
+                    <div key={session.woche} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+                      <div className="flex items-center gap-3 px-5 py-3 bg-orange-50 border-b border-orange-100">
+                        <div className="w-7 h-7 rounded-full bg-[#F5821F] flex items-center justify-center text-white text-xs font-bold shrink-0">
+                          {session.woche}
+                        </div>
+                        <div>
+                          <span className="text-xs text-orange-600 font-semibold uppercase tracking-wide">Woche {session.woche}</span>
+                          <h3 className="text-sm font-bold text-gray-900 leading-tight">{session.titel}</h3>
+                        </div>
+                      </div>
+                      <ul className="px-5 py-3 space-y-1.5">
+                        {session.inhalt.map((punkt) => (
+                          <li key={punkt} className="flex items-start gap-2 text-sm text-gray-600">
+                            <span className="text-[#F5821F] shrink-0 mt-0.5">›</span>
+                            {punkt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-4">Kursdetails</h2>

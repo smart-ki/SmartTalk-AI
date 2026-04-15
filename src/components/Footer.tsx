@@ -24,9 +24,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-4">Unsere Kurse</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/kurse/ki-einstieg" className="hover:text-[#F5821F] transition-colors">KI-Einstieg</Link></li>
-              <li><Link href="/kurse/ki-im-arbeitsalltag" className="hover:text-[#F5821F] transition-colors">KI im Arbeitsalltag</Link></li>
-              <li><Link href="/kurse/prompting-profi" className="hover:text-[#F5821F] transition-colors">Prompting Profi</Link></li>
+              <li><Link href="/kurse/schnupperkurs" className="hover:text-[#F5821F] transition-colors">Schnupperkurs</Link></li>
+              <li><Link href="/kurse/grundkompetenzen" className="hover:text-[#F5821F] transition-colors">Grundkompetenzen (Bildungsgutschein)</Link></li>
+              <li><Link href="/kurse/ki-tools-vergleich" className="hover:text-[#F5821F] transition-colors">KI-Tools im Vergleich</Link></li>
+              <li><Link href="/kurse/prompts-die-funktionieren" className="hover:text-[#F5821F] transition-colors">Prompts die funktionieren</Link></li>
               <li><Link href="/kurse/datenschutz-ethik" className="hover:text-[#F5821F] transition-colors">Datenschutz & Ethik</Link></li>
               <li><Link href="/kurse/ki-strategie" className="hover:text-[#F5821F] transition-colors">KI-Strategie</Link></li>
               <li><Link href="/kurse/ki-bildung" className="hover:text-[#F5821F] transition-colors">KI in der Bildung</Link></li>

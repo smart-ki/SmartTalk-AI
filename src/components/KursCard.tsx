@@ -8,13 +8,21 @@ export default function KursCard({ kurs }: { kurs: Kurs }) {
       <div className="h-1.5 bg-[#F5821F]" />
 
       <div className="p-6 flex flex-col flex-1">
-        {/* Level badge */}
-        <div className="flex items-center justify-between mb-4">
+        {/* Level badge + Nummer */}
+        <div className="flex items-center justify-between mb-3">
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${kurs.levelFarbe}`}>
             {kurs.level}
           </span>
           <span className="text-xs text-gray-400 font-medium">Kurs {kurs.nummer}</span>
         </div>
+
+        {/* Highlight-Banner (z.B. Bildungsgutschein) */}
+        {kurs.highlight && (
+          <div className={`text-xs font-semibold px-3 py-1.5 rounded-lg border mb-3 flex items-center gap-1.5 ${kurs.highlightFarbe}`}>
+            <span>✨</span>
+            {kurs.highlight}
+          </div>
+        )}
 
         {/* Title */}
         <h3 className="font-bold text-lg text-gray-900 leading-snug mb-2 group-hover:text-[#F5821F] transition-colors">
@@ -28,6 +36,22 @@ export default function KursCard({ kurs }: { kurs: Kurs }) {
         <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-5">
           {kurs.kurzbeschreibung}
         </p>
+
+        {/* Session-Visualisierung */}
+        {kurs.anzahlSessions && kurs.anzahlSessions > 1 && (
+          <div className="flex items-center gap-1.5 mb-4">
+            {Array.from({ length: kurs.anzahlSessions }).map((_, i) => (
+              <div key={i} className="flex flex-col items-center gap-1">
+                <div className="w-7 h-7 rounded-full bg-orange-100 border-2 border-[#F5821F] flex items-center justify-center text-[10px] font-bold text-[#F5821F]">
+                  {i + 1}
+                </div>
+              </div>
+            ))}
+            <span className="ml-2 text-xs text-gray-500">
+              {kurs.anzahlSessions}x {kurs.minutenProSession} Min., 1x/Woche
+            </span>
+          </div>
+        )}
 
         {/* Meta */}
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-500 mb-5 border-t border-gray-100 pt-4">
@@ -56,13 +80,24 @@ export default function KursCard({ kurs }: { kurs: Kurs }) {
           <div>
             <span className="text-xs text-gray-400 uppercase tracking-wide">ab</span>
             <span className="block text-xl font-bold text-gray-900">{kurs.preisAb}</span>
+            {kurs.slug === 'grundkompetenzen' && (
+              <span className="text-xs text-gray-400">*mit Bildungsgutschein</span>
+            )}
           </div>
-          <Link
-            href={`/kurse/${kurs.slug}`}
-            className="btn-primary text-sm py-2.5 px-5"
-          >
-            Mehr & Buchen
-          </Link>
+          {kurs.externerLink ? (
+            <a
+              href={kurs.externerLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-sm py-2.5 px-5"
+            >
+              Zur Anmeldung →
+            </a>
+          ) : (
+            <Link href={`/kurse/${kurs.slug}`} className="btn-primary text-sm py-2.5 px-5">
+              Mehr & Buchen
+            </Link>
+          )}
         </div>
       </div>
     </div>
