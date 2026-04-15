@@ -32,7 +32,7 @@ export default function Header() {
               Kontakt
             </Link>
             <Link href="/#angebote" className="btn-primary text-sm py-2 px-5">
-              Kurs buchen
+              Kurs finden
             </Link>
           </nav>
 

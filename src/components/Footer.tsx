@@ -15,7 +15,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Praxisnahe KI-Bildung für Berufsleute und KMU in der Zentralschweiz. Ein Angebot von SmartTalk.
+              Der Mensch im Mittelpunkt – KI als Werkzeug zum Bessersein.
+              Für Privatpersonen, Teams und Unternehmen in der Zentralschweiz.
             </p>
           </div>
 
